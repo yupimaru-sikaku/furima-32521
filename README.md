@@ -2,12 +2,16 @@
 
 ## users テーブル
 
-| Column       | Type    | Options                   |
-| ------------ | ------- | ------------------------- |
-| nickname     | string  | null: false, unique: true |
-| name         | string  | null: false               |
-| name_reading | string  | null: false               |
-| birthday     | integer | null: false               |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false, unique: true |
+| email              | string  | null: false               |
+| password           | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_reading  | string  | null: false               |
+| first_name_reading | string  | null: false               |
+| birthday           | integer | null: false               |
 
 ### Association
 
@@ -16,18 +20,17 @@
 
 ## items テーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| image               | string     | null: false                    |
-| name                | text       | null: false                    |
-| description         | text       | null: false                    |
-| price               | integer    | null: false                    |
-| user                | references | null: false, foreign_key: true |
-| category            | integer    | null: false                    | ActiveHash
-| condition           | integer    | null: false                    | ActiveHash
-| select_delivery_fee | integer    | null: false                    | ActiveHash
-| prefecture          | integer    | null: false                    | ActiveHash
-| term                | integer    | null: false                    | ActiveHash
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| name                   | string     | null: false                    |
+| description            | text       | null: false                    |
+| price                  | integer    | null: false                    |
+| user                   | references | null: false, foreign_key: true |
+| category_id            | integer    | null: false                    | ActiveHash
+| condition_id           | integer    | null: false                    | ActiveHash
+| select_delivery_fee_id | integer    | null: false                    | ActiveHash
+| prefecture_id          | integer    | null: false                    | ActiveHash
+| term_id                | integer    | null: false                    | ActiveHash
 
 ### Association
 
@@ -40,25 +43,25 @@
 | ------- | ---------- | ------------------------------ |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
-| address | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :items
-- belongs_to :address
+- has_one :address
 
 
 ## addresses テーブル
 
-| Column        | Type    | Option      |
-| ------------- | ------- | ----------- |
-| postal_code   | integer | null: false |
-| prefecture    | integer | null: false | ActiveHash
-| city          | string  | null: false |
-| house_number  | string  | null: false |
-| building_name | text    |             |
-| phone_number  | integer | null: false |
+| Column        | Type       | Option                         |
+| ------------- | ---------- | ------------------------------ |
+| postal_code   | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    | ActiveHash
+| city          | string     | null: false                    |
+| house_number  | string     | null: false                    |
+| building_name | text       |                                |
+| phone_number  | integer    | null: false                    |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
 
