@@ -73,6 +73,12 @@ RSpec.describe User, type: :model do
     expect(another_user.errors.full_messages).to include("Email has already been taken")
   end
 
+  it 'emailに@が存在しない場合登録できないこと' do
+    @user.email = "aaaaaa"
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Email is invalid")
+  end
+
   it 'birthdayが空だと保存できないこと' do
     @user.birthday = nil
     @user.valid?
@@ -109,7 +115,7 @@ RSpec.describe User, type: :model do
     expect(@user.errors.full_messages).to include("Last name reading can't be blank")
   end
 
-  it 'last_name_readingが全角でないと保存できfirst' do
+  it 'last_name_readingが全角でないと保存できいこと' do
     @user.last_name_reading = 'ﾊﾝｶｸ'
     @user.valid?
     expect(@user.errors.full_messages).to include("Last name reading Full-width characters")
@@ -121,7 +127,7 @@ RSpec.describe User, type: :model do
     expect(@user.errors.full_messages).to include("First name reading can't be blank")
   end
 
-  it 'first_name_readingが全角でないと保存できfirst' do
+  it 'first_name_readingが全角でないと保存できないこと' do
     @user.first_name_reading = 'ﾊﾝｶｸ'
     @user.valid?
     expect(@user.errors.full_messages).to include("First name reading Full-width characters")
