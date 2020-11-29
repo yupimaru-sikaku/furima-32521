@@ -5,22 +5,23 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-  context ‘ユーザーを正しく登録ができる時’ do
+  context 'ユーザー登録できる時' do
 
-    it 'すべての値が正しく入力されていれば保存できること' do
+    it "全てのカラムが期待通りに存在すれば登録できること" do
       expect(@user).to be_valid
     end
 
   end
   
-  context ‘ユーザーを登録できない時’ do
-    it 'passwordが空だと保存できないこと' do
+  context 'ユーザー登録できない時' do
+
+    it "passwordが空だと保存できないこと" do
       @user.password = nil
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
   
-    it 'passwordが6文字以上でないと保存できないこと' do
+    it "passwordが6文字以上でないと保存できないこと" do
       @user.password = "12345"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
@@ -106,14 +107,8 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Last name reading can't be blank")
     end
   
-    it 'last_name_readingが全角でないと保存できいこと' do
+    it 'last_name_readingが全角でないと保存できないこと' do
       @user.last_name_reading = 'ﾊﾝｶｸ'
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Last name reading Full-width characters")
-    end
-  
-    it 'last_name_readingが全角でないと保存できいこと' do
-      @user.last_name_reading = '山田'
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name reading Full-width katakana characters")
     end
@@ -127,7 +122,7 @@ RSpec.describe User, type: :model do
     it 'first_name_readingが全角でないと保存できないこと' do
       @user.first_name_reading = 'ﾊﾝｶｸ'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name reading Full-width characters")
+      expect(@user.errors.full_messages).to include("First name reading Full-width katakana characters")
     end
   
     it 'first_name_readingがカタカナでないと保存できないこと' do
