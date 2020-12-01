@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_orders, only: [:index, :show, :edit]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
-    @order = Order.all
   end
 
   def new
@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @order = Order.all
   end
 
   def create
@@ -26,7 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless @item.user.id == current_user.id
+    if @item.user.id == current_user.id && @orders.where(item_id: @item.id).blank? 
+      edit_item_path(@item)
+    else
       redirect_to root_path
     end
   end
@@ -54,6 +55,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_orders
+    @orders = Order.includes(:user, :item)
   end
 
 end

@@ -3,8 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-  @order = Order.all
-    if @item.user_id == current_user.id || @order.where(item_id: params[:item_id]).exists?
+  @orders = Order.includes(:user, :item)
+    if @item.user_id == current_user.id || @orders.where(item_id: params[:item_id]).exists?
       redirect_to root_path
     else
       @order_address = OrderAddress.new

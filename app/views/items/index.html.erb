@@ -133,7 +133,7 @@
             <%= image_tag item.image, class: "item-img" %>
 
             <%# 商品が売れていればsold outを表示しましょう %>
-            <% if @order.where(item_id: item.id).exists? %>
+            <% if @orders.where(item_id: item.id).exists? %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
