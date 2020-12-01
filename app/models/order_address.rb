@@ -10,6 +10,7 @@ class OrderAddress
     validates :phone_number, format: { with: /\A[0-9０-９]+\z/, message: "Input only number" }
   end
 
+  validates :phone_number, length: { maximum: 12 }
   validates :prefecture_id, numericality: { other_than: 0, message: "Select" }
 
   def save

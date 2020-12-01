@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     if @item.user_id == current_user.id
       redirect_to root_path
     else

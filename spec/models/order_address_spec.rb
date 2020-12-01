@@ -11,6 +11,11 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address).to be_valid
     end
 
+    it "building_nameが空でも登録できること" do
+      @order_address.building_name = nil
+      expect(@order_address).to be_valid
+    end
+
   end
   
   context 'ユーザー登録できない時' do
@@ -61,6 +66,12 @@ RSpec.describe OrderAddress, type: :model do
       @order_address.phone_number = "電話だよ"
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone number Input only number")
+    end
+
+    it "phone_numberが12桁以上では保存できないこと" do
+      @order_address.phone_number = "1122334455667"
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone number is too long (maximum is 12 characters)")
     end
 
   end
