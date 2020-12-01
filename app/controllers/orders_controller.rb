@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if @item.user_id == current_user.id
+  @order = Order.all
+    if @item.user_id == current_user.id || @order.where(item_id: params[:item_id]).exists?
       redirect_to root_path
     else
       @order_address = OrderAddress.new
@@ -12,7 +13,6 @@ class OrdersController < ApplicationController
   
   def create
     @order_address = OrderAddress.new(order_params)
-    @item = Item.find(@order_address.item_id)
     if @order_address.valid?
       pay_item
       @order_address.save

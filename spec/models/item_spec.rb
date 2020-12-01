@@ -34,31 +34,31 @@ RSpec.describe Item, type: :model do
     end
   
     it 'categoryが選択されていなければ保存できないこと' do
-      @item.category_id = "0"
+      @item.category_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Category Select")
     end
 
     it 'conditionが選択されていなければ保存できないこと' do
-      @item.condition_id = "0"
+      @item.condition_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition Select")
     end
 
     it 'select_delivery_feeが選択されていなければ保存できないこと' do
-      @item.select_delivery_fee_id = "0"
+      @item.select_delivery_fee_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Select delivery fee Select")
     end
 
     it 'prefectureが選択されていなければ保存できないこと' do
-      @item.prefecture_id = "0"
+      @item.prefecture_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture Select")
     end
     
     it 'termが選択されていなければ保存できないこと' do
-      @item.term_id = "0"
+      @item.term_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include("Term Select")
     end
