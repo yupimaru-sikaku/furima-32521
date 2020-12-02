@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_orders, only: [:index, :show, :edit]
 
   def index
-    @items = Item.includes(:user).order("created_at DESC")
+    @items = Item.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -15,8 +15,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item  = Item.new(item_params)
-    if @item.valid? 
+    @item = Item.new(item_params)
+    if @item.valid?
       @item.save
       redirect_to root_path
     else
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user.id == current_user.id && @orders.where(item_id: @item.id).blank? 
+    if @item.user.id == current_user.id && @orders.where(item_id: @item.id).blank?
       edit_item_path(@item)
     else
       redirect_to root_path
@@ -47,8 +47,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  
   private
+
   def item_params
     params.require(:item).permit(:image, :name, :description, :price, :category_id, :condition_id, :select_delivery_fee_id, :prefecture_id, :term_id).merge(user_id: current_user.id)
   end
@@ -60,5 +60,4 @@ class ItemsController < ApplicationController
   def set_orders
     @orders = Order.includes(:user, :item)
   end
-
 end
