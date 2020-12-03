@@ -12,7 +12,7 @@
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     
     <%# 出品画像 %>
-    <div class="img-upload">
+    <div class="img-upload" id="img-upload">
       <div class="weight-bold-text">
         出品画像
         <span class="indispensable">必須</span>
@@ -21,8 +21,14 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :image, id:"item-image" %>
+      <%# ★★★追加実装_複数の画像を投稿 %>
+       <%= f.file_field :images, name: 'item[images][]', id:"item_image" %>
+       <div id="image-list"></div>
       </div>
+        <% @item.images.each do |image| %>
+          <%= image_tag image, class: 'images' %>
+        <% end %>
+      <%# /★★★追加実装_複数の画像を投稿 %>
     </div>
     <%# /出品画像 %>
     <%# 商品名と商品説明 %>

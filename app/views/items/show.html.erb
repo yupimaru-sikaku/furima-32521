@@ -7,13 +7,15 @@
       <%= @item.name %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <% if @orders.where(item_id: params[:id]).exists? %>
-        <div class='sold-out'>
-          <span>Sold Out!!</span>
-        </div>
+      <% @item.images.each do |image|%>
+        <%= image_tag image,class:"item-box-img" %>
+        <% if @orders.where(item_id: params[:id]).exists? %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+        <% end %>
       <% end %>
+      <%# 商品が売れている場合は、sold outを表示しましょう %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
