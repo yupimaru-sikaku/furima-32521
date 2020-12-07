@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_many :items, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
 
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'は文字と数字の両方を含めて下さい' }
 
@@ -26,5 +29,9 @@ class User < ApplicationRecord
   with_options format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナで入力して下さい' } do
     validates :last_name_reading
     validates :first_name_reading
+  end
+
+  def already_favorited?(item)
+    self.favorites.exists?(item_id: item.id)
   end
 end

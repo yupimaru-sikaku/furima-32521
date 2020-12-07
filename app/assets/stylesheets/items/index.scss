@@ -295,6 +295,11 @@ a {
 .star-btn {
   display: flex;
   align-items: center;
+  font-size: 2vh;
+}
+
+.fa-star:before {
+  color:orange;
 }
 
 .star-icon {
@@ -304,7 +309,7 @@ a {
 }
 
 .star-count {
-  font-size: 2vh;
+  font-size: 2.5vh;
 }
 
 /* //商品一覧 */

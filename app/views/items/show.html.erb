@@ -77,8 +77,17 @@
     </table>
     <div class="option">
       <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+        <% if current_user.already_favorited?(@item) %>
+          <%= link_to item_favorites_path(@item), method: :delete do %>
+            <i class="fas fa-star">：お気入りの数：</i>
+          <% end %>
+          <%= @item.favorites.count %>
+        <% else %>
+          <%= link_to item_favorites_path(@item), method: :post do %>  
+            <i class="far fa-star">：お気入りの数：</i>
+          <% end %>
+          <%= @item.favorites.count %>
+        <% end %>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
@@ -89,18 +98,36 @@
   <%# /商品の概要 %>
 
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+    <% if user_signed_in? %>
+      <%= form_with(model: [@item, @comment], local: true) do |form| %>
+        <%= form.text_area :content, placeholder: "コメントしましょう！！", class: "comment-text" %>
+        <p class="comment-warn">
+          相手のことを考え丁寧なコメントを心がけましょう。
+          <br>
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        </p>
+        <div class="comment-btn">
+          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+          <%= form.submit "コメントする", class: "comment-submit" %>
+        </div>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
+    <% end %>
+
+      <div class="comments">
+        <% if @comments.exists? %>
+          <h4>コメント一覧</h4>
+          <% @comments.each do |comment| %>
+            <p class="comment-list">
+              <%= link_to comment.user.nickname, "users/#{comment.user_id}" %>
+              <%= l comment.created_at, class: "comment-time" %><br>
+              <%= comment.content %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+      
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">

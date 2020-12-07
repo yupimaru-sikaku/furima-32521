@@ -52,12 +52,13 @@
 
 .item-red-btn {
   text-align: center;
-  background-color: #ea352d;
+  background-color: rgba(222,22,333,0.3);
   font-size: 24px;
   font-weight: bold;
   color: #FFF;
   margin: 20px 0px;
   padding: 2vh 10vw;
+  border-radius: 100px;
 }
 
 .or-text {
@@ -65,12 +66,13 @@
 }
 
 .item-destroy {
-  background-color: lightgray;
+  background-color: rgba(211,211,211, 0.5);
   text-align: center;
   font-size: 24px;
   color: black;
   margin: 20px 0px;
   padding: 2vh 10vw;
+  border-radius: 100px;
 }
 
 .item-explain-box {
@@ -108,7 +110,7 @@
   border-radius: 40px;
   width: 15vw;
   min-width: 200px;
-  color: rgb(249, 75, 0);
+  color: #ffb340;
   border: 2px solid #ffb340;
   display: flex;
   justify-content: center;
@@ -162,18 +164,6 @@
   text-align: left;
 }
 
-.comment-btn {
-  line-height: 48px;
-  background-color: #3CCACE;
-  border: 1px solid #3CCACE;
-  color: #fff;
-  width: 50%;
-  min-width: 150px;
-  font-size: 18px;
-  border-radius: 100px;
-  margin-bottom: 2vh;
-}
-
 .comment-flag {
   display: flex;
   justify-content: center;
@@ -204,3 +194,47 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.comments{
+  margin-top: 5vh;
+}
+
+.comment-btn {
+  line-height: 48px;
+  background-color: #3CCACE;
+  border: 1px solid #3CCACE;
+  color: #fff;
+  width: 50%;
+  min-width: 150px;
+  font-size: 18px;
+  border-radius: 100px;
+  margin: 0 auto; 
+}
+
+.comment-submit {
+  width: 50%;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background-color: rgba(255,255,255,0);
+}
+
+.comments h4 {
+  border-bottom: 6px solid #3333;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 2vh;
+}
+
+.comment-time{
+  color: red;
+}
+
+.comment-list{
+  padding-bottom: 3vh;
+}
+
+.fa-star{
+  color: chocolate;
+}
+
