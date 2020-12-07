@@ -26,11 +26,11 @@
 | description            | text       | null: false                    |
 | price                  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
-| category_id            | integer    | null: false                    | ActiveHash
-| condition_id           | integer    | null: false                    | ActiveHash
-| select_delivery_fee_id | integer    | null: false                    | ActiveHash
-| prefecture_id          | integer    | null: false                    | ActiveHash
-| term_id                | integer    | null: false                    | ActiveHash
+| category_id            | integer    | null: false                    |
+| condition_id           | integer    | null: false                    |
+| select_delivery_fee_id | integer    | null: false                    |
+| prefecture_id          | integer    | null: false                    |
+| term_id                | integer    | null: false                    |
 
 ### Association
 
@@ -56,7 +56,7 @@
 | Column        | Type       | Option                         |
 | ------------- | ---------- | ------------------------------ |
 | postal_code   | string     | null: false                    |
-| prefecture_id | integer    | null: false                    | ActiveHash
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
@@ -66,3 +66,16 @@
 ### Association
 
 - belongs_to :order
+
+## messages テーブル
+
+| Column        | Type       | Option                         |
+| ------------- | ---------- | ------------------------------ |
+| message       | string     | null: false                    |
+| user          | references | null: false                    |
+| item          | references | null: false                    |
+
+### Association
+
+- has_many :users
+- has_many :items
