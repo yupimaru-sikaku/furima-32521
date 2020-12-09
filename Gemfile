@@ -73,3 +73,8 @@ gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
 gem 'rails-i18n'
+gem 'jquery-rails'
+gem 'ransack'
+
+# 画像をドラッグしてアップロードできる
+gem 'dropzonejs-rails', '~> 0.7.3'

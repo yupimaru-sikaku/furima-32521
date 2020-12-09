@@ -1,0 +1,3 @@
+var fav = document.getElementById("favorites_button-<%= @item.id %>");
+
+fav.innerHTML = "<%= j(render partial: "favorites", locals: { item: @item }) %>"

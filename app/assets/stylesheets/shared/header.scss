@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+header.top-page-header {
+  border-bottom: 2px solid #2322;
+}
+
 .top-page-header {
   width: 100vw;
   padding: 2vh 15vw;
@@ -25,6 +29,11 @@
   height: 5vh;
   display: flex;
   margin-bottom: 5px;
+}
+
+input#keyword {
+  width: 60vh;
+  padding-left: 1vw;
 }
 
 .search-form>.input-box {
@@ -101,4 +110,29 @@
 .sign-up {
   text-decoration: none;
   color: #333333;
+}
+
+
+.menu-open{
+  background-color: black;
+
+  & .mobile-menu-icon{
+    
+    & > span{
+      background-color: white;
+
+      &:nth-child(1){
+        transform: translateY(11px) rotate(135deg);
+      }
+
+      &:nth-child(2){
+        transform: translateX(-18px) scaleX(0);
+      }
+
+      &:nth-child(3){
+        transform: translateY(-11px) rotate(-135deg);
+      }
+    }
+  }
+
 }

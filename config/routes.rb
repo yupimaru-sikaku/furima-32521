@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create]
     resources :comments, only: [:create]
     resource :favorites, only: [:create, :destroy]
-  end
-  
+    collection do
+      get 'search'
+    end
+  end  
 end

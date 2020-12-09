@@ -27,4 +27,22 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :term_id
   end
+
+
+  def self.search(search)
+    if search != ""
+      Item.where("name like? ", "%#{search}%")
+    else
+      Item.all
+    end
+  end
+
+  def previous
+    Item.where("id < ?", self.id).order("id DESC").first
+  end
+ 
+  def next
+    Item.where("id > ?", self.id).order("id ASC").first
+  end
+
 end

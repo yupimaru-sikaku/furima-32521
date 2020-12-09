@@ -31,7 +31,4 @@ class User < ApplicationRecord
     validates :first_name_reading
   end
 
-  def already_favorited?(item)
-    self.favorites.exists?(item_id: item.id)
-  end
 end

@@ -208,11 +208,16 @@
   min-width: 150px;
   font-size: 18px;
   border-radius: 100px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
+input.comment-submit {
+  outline: none;
+}
+
+
 .comment-submit {
-  width: 50%;
+  width: 100%;
   cursor: pointer;
   border: none;
   color: white;
@@ -238,3 +243,29 @@
   color: chocolate;
 }
 
+#favorites_button {
+  color: hotpink;
+  background-color: bisque;
+  width: 14vw;
+  min-width: 200px;
+  border: 1px solid hotpink;
+  border-radius: 100px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 1vw;
+}
+
+
+a.favorite-btn {
+  display: block;
+  text-align: center;
+  height: 6vh;
+  line-height: 6vh;
+}
+
+.scroll-btn {
+  text-decoration: none;
+  font-size: 1.5em;
+}

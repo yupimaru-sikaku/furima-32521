@@ -1,0 +1,11 @@
+<% if Favorite.find_by(user_id: current_user.id, item_id: item.id) %>
+  <%= link_to item_favorites_path(item), method: :delete, remote: true, class: "favorite-btn" do %>
+    <i class="fas fa-heart">   </i>
+    <%= item.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to item_favorites_path(item), method: :post, remote: true, class: "favorite-btn" do %>
+    <i class="far fa-heart"></i>
+    <%= item.favorites.count %>
+  <% end %>
+<% end %>
