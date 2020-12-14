@@ -1,0 +1,28 @@
+<%= render "shared/header" %>
+
+<div class="AccountPage">
+  <div class="user-info">
+    <h1>マイページ</h1>
+    <%= "お気に入り総数： #{@user.favorites.count}" %>
+  </div>
+  <% if current_user.id == @user.id %>
+    <div class="Card_info">
+      <div class="Card__title">
+        <h2>カード情報</h2>
+        <p>※他ユーザーには見えません</p>
+      </div>
+      【カード番号】
+      <br>
+      <%= "**** **** **** " + @card[:last4] %>
+      <br>
+      【有効期限】
+      <br>
+      <%= @card[:exp_month] %>
+      /
+      <%= @card[:exp_year] %>
+    </div>
+  <% end %>
+  <%= link_to "カード登録はこちら", new_card_path, class: "btn letter-spacing" %>
+</div>
+
+ <%= render "shared/footer" %>

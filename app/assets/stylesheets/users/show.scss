@@ -1,0 +1,58 @@
+.AccountPage{
+  width: 100vw;
+  text-align: center;
+
+  .user-info {
+    padding-bottom: 4vh;
+    
+    h1{
+      font-size: 2em;
+      width: 15vw;
+      border-bottom: 1px solid #999999;
+      margin: 0 auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    
+  }
+  
+  
+  .Card__title{
+    width: 15vw;
+    border-bottom: 1px solid #999999;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 2em;
+    padding-bottom: 1vh;
+  }
+
+  p{
+    font-size: 12px;
+  }
+
+}
+
+.letter-spacing{
+  position: relative;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid black;
+  font-weight: 600;
+  padding: 10px 40px;
+  margin: 21px auto;
+  margin-bottom: 5vh;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: black;
+  text-decoration: none !important;
+  &:hover{
+    background-color: black;
+    color: White;
+    letter-spacing: 3px;
+  }
+}
+
+.Card_info {
+  margin-bottom: 10px;
+}

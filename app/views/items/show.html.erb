@@ -1,3 +1,4 @@
+<% breadcrumb :items_show, @item %>
 <%= render "shared/header" %>
 
 <%# 商品の概要 %>
@@ -9,14 +10,16 @@
     <div class='item-img-content'>
       <% @item.images.each do |image|%>
         <%= image_tag image,class:"item-box-img" %>
+
+        <%# 商品が売れている場合はsold out %>
         <% if @orders.where(item_id: params[:id]).exists? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
         <% end %>
+        <%#// 商品が売れている場合はsold out %>
+
       <% end %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -39,10 +42,11 @@
       <% else %>
         <% if @orders.where(item_id: params[:id]).exists? %>
         <% else %>
-          <%= link_to '購入画面に進む', item_orders_path(@item) ,class:"item-red-btn"%>
+          <%= link_to '購入画面に進む', item_orders_path(@item) ,class:"item-red-btn" %>
         <% end %>
       <% end %>
     <% end %>
+    <%#//ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
       <span><%= @item.description %></span>
@@ -76,9 +80,9 @@
       </tbody>
     </table>
     <div class="option">
-      <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+      <%#いいね機能%>
+      <div id="favorites_button-<%= @item.id %>">
+        <%= render partial: "favorites/favorites", locals: { item: @item } %>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
@@ -88,27 +92,50 @@
   </div>
   <%# /商品の概要 %>
 
+  <%#コメント機能%>
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+    <% if user_signed_in? %>
+      <%= form_with(model: [@item, @comment], local: true) do |form| %>
+        <%= form.text_area :content, placeholder: "コメントしましょう！！", class: "comment-text" %>
+        <p class="comment-warn">
+          相手のことを考え丁寧なコメントを心がけましょう。
+          <br>
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        </p>
+          <%= button_tag :type => "submit", class: "comment-btn" do %>
+           <i class="fas fa-comments"></i>コメントする
+          <% end %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
+    <% end %>
+
+      <div class="comments">
+        <h4 class="comments-index">コメント一覧</h4>
+        <% if @comments.exists? %>
+          <% @comments.each do |comment| %>
+            <p class="comment-list">
+              <%= link_to comment.user.nickname, "http://localhost:3000/users/#{comment.user_id}" %>
+              <%= l comment.created_at, class: "comment-time" %><br>
+              <%= comment.content %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
   </div>
+  <%#コメント機能%>
+  
   <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
+    <% if @item.previous.present? %>
+      <%= link_to "＜前の商品へ", item_path(@item.previous), class: "scroll-btn" %>
+    <% else %>
+      &nbsp;
+    <% end %>
+    <% if @item.next.present? %>
+      <%= link_to "次の商品へ＞",item_path(@item.next), class: "scroll-btn" %>
+    <% else %>
+      &nbsp;
+    <% end %>
   </div>
   <a href="#" class='another-item'><%= @item.category.name %>をもっと見る</a>
 </div>

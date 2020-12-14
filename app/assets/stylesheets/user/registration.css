@@ -1,3 +1,28 @@
+.login-icon {
+  margin: 0 auto;
+  font-size: 3em;
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3vh;
+}
+
+.fa-envelope:before {
+  content: "\f0e0";
+  color: darkolivegreen;
+}
+
+.fa-facebook:before {
+  content: "\f09a";
+  color: blue;
+}
+
+.fa-google-plus:before {
+  content: "\f2b3";
+  color: chocolate;
+}
+
+
 .registration-main {
   width: 100%;
   min-width: 800px;
@@ -5,6 +30,7 @@
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 /* form-wrapは商品購入画面でも使用しています */
@@ -12,6 +38,7 @@
   width: 50%;
   background-color: white;
   padding-bottom: 70px;
+  margin: 0 auto;
 }
 
 .form-header {
@@ -51,7 +78,7 @@
 
 .input-default {
   width: 100%;
-  margin-top: 5px;
+  margin-top: 15px;
   height: 48px;
   padding: 10px 16px 8px;
   border-radius: 4px;
@@ -83,7 +110,7 @@
 
 .input-name {
   width: 130px;
-  margin: 5px 20px 0 20px;
+  margin: 15px 20px 0 20px;
   height: 48px;
   line-height: 30px;
   padding: 10px 16px 8px;

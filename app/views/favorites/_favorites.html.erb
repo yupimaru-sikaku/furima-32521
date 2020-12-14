@@ -1,0 +1,20 @@
+<% if user_signed_in? %>
+  <% if Favorite.find_by(user_id: current_user.id, item_id: item.id) %>
+    <%= link_to item_favorites_path(item), method: :delete, remote: true, class: "favorite-btn" do %>
+      いいね数：
+      <i class="fas fa-heart">   </i>
+      <%= item.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to item_favorites_path(item), method: :post, remote: true, class: "favorite-btn" do %>
+      いいね数：
+      <i class="far fa-heart"></i>
+      <%= item.favorites.count %>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="favorite-btn">
+    <i class="far fa-heart"></i>
+    <%= item.favorites.count %>
+  </div>
+<% end %>

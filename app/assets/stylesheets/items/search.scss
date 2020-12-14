@@ -1,0 +1,19 @@
+.item-contents {
+  background-color: rgb(235,239, 239);
+}
+
+h2.title {
+  margin-bottom: 5vh;
+}
+
+li.list {
+  list-style: none;
+  margin-bottom: 5vh;
+}
+
+.items-list {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

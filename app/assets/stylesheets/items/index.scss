@@ -22,6 +22,22 @@ a {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
+input#keyword {
+  width: 60vh;
+}
+
+button {
+  background-color: #3ccace;
+  opacity: 0.7;
+  width: 3vw;
+  cursor: pointer;
+}
+
+.fa-search-plus:before {
+  content: "\f00e";
+  color: white;
+}
+
 .service-title {
   font-size: 8vh;
 }
@@ -295,6 +311,11 @@ a {
 .star-btn {
   display: flex;
   align-items: center;
+  font-size: 2vh;
+}
+
+.fa-heart:before {
+  color:orange;
 }
 
 .star-icon {
@@ -304,7 +325,7 @@ a {
 }
 
 .star-count {
-  font-size: 2vh;
+  font-size: 2.5vh;
 }
 
 /* //商品一覧 */

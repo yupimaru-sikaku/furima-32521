@@ -1,0 +1,79 @@
+<% breadcrumb :items_search, @items %>
+<%= render "shared/header" %>
+<div class='item-contents'>
+  <h2 class='title'>検索結果</h2>
+
+  <%# 検索窓の中身が空なら（＝カテゴリー検索なら） %>
+    <% if params[:keyword] == nil %>
+        <div class="items-list">
+          <% @results.each do |item| %>
+              <li class='list'>
+                <%= link_to item_path(item) do %>
+                <div class='item-img-content'>
+                  <%= image_tag item.images[0], class: "item-img" %>
+                  <%# 商品が売れていればsold outを表示しましょう %>
+                  <% if @orders.where(item_id: item.id).exists? %>
+                    <div class='sold-out'>
+                      <span>Sold Out!!</span>
+                    </div>
+                  <% end %>
+                  <%# //商品が売れていればsold outを表示しましょう %>
+                </div>
+                <div class='item-info'>
+                  <h3 class='item-name'>
+                    <%= item.name %>
+                  </h3>
+                  <div class='item-price'>
+                    <span><%= item.price %>円<br><%= item.select_delivery_fee.name %></span>
+                    <div class='star-btn'>
+                      <i class="fas fa-star"></i>
+                      <%= item.favorites.count %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </li>
+          <% end %>
+        </div>
+    <% else %>
+        <div class="items-list">
+        <% @items.each do |item| %>
+            <li class='list'>
+              <%= link_to item_path(item) do %>
+              <div class='item-img-content'>
+                <%= image_tag item.images[0], class: "item-img" %>
+                <%# 商品が売れていればsold outを表示しましょう %>
+                <% if @orders.where(item_id: item.id).exists? %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
+                <% end %>
+                <%# //商品が売れていればsold outを表示しましょう %>
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= item.name %>
+                </h3>
+                <div class='item-price'>
+                  <span><%= item.price %>円<br><%= item.select_delivery_fee.name %></span>
+                  <div class='star-btn'>
+                    <i class="fas fa-star"></i>
+                    <%= item.favorites.count %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </li>
+        <% end %>
+        </div>
+    <% end %>
+    
+    <% unless @items.any? %>
+      <p>商品が見つかりませんでした</p>
+    <% end %>
+  </ul>
+</div>
+
+
+
+<%= render "shared/footer" %>
