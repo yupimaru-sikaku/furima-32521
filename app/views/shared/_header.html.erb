@@ -16,7 +16,7 @@
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
-        <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li>
+        <li><%= link_to current_user.nickname, user_path(current_user.id), class: "user-nickname" %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
       <% else %>
         <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
@@ -25,3 +25,53 @@
     </ul>
   </div>
 </header>
+
+<input id="menu" type="checkbox">
+<label for="menu" class="open">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
+<label for="menu" class="close-2"></label>
+<div class="content">
+  <div class="content-title">
+    詳細検索
+  </div>
+  <%= search_form_for @p, url: search_items_path, class: "content-search-form" do |f|  %>
+    <%= f.label :category_id_eq, 'カテゴリー：' %>
+    <br>
+    <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>
+    <br>
+    <%= f.label :condition_id_eq, '商品の状態：' %>
+    <br>
+    <%= f.collection_select :condition_id_eq, Condition.all, :id, :name, include_blank: '指定なし' %>
+    <br>
+    <%= f.label :select_delivery_fee_id_eq, '配送料の負担：' %>
+    <br>
+    <%= f.collection_select :select_delivery_fee_id_eq, SelectDeliveryFee.all, :id, :name, include_blank: '指定なし' %>
+    <br>
+    <%= f.label :prefecture_id_eq, '都道府県：' %>
+    <br>
+    <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, include_blank: '指定なし' %>
+    <br>
+    <%= f.label :term_id_eq, '商品到達までの期間：' %>
+    <br>
+    <%= f.collection_select :term_id_eq, Term.all, :id, :name, include_blank: '指定なし' %>
+    <br>
+    <%= f.label :price, '価格：' %>
+    <br>
+    <%= f.radio_button :price_lteq, '' %>
+    指定なし
+    <br>
+    <%= f.radio_button :price_lteq, '1000' %>
+    1000円以下
+    <br>
+    <%= f.radio_button :price_lteq, '2500' %>
+    2500円以下
+    <br>
+    <%= f.radio_button :price_lteq, '5000' %>
+    5000円以下
+    <br>
+    <%= f.submit '検索' %>
+  <% end %>
+</div>

@@ -1,3 +1,4 @@
+<% breadcrumb :items_show, @item %>
 <%= render "shared/header" %>
 
 <%# 商品の概要 %>
@@ -41,7 +42,7 @@
       <% else %>
         <% if @orders.where(item_id: params[:id]).exists? %>
         <% else %>
-          <%= link_to '購入画面に進む', item_orders_path(@item) ,class:"item-red-btn"%>
+          <%= link_to '購入画面に進む', item_orders_path(@item) ,class:"item-red-btn" %>
         <% end %>
       <% end %>
     <% end %>
@@ -101,22 +102,20 @@
           <br>
           不快な言葉遣いなどは利用制限や退会処分となることがあります。
         </p>
-        <div class="comment-btn">
-          <%= form.submit "コメントする", class: "comment-submit"  do %>
-            <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+          <%= button_tag :type => "submit", class: "comment-btn" do %>
+           <i class="fas fa-comments"></i>コメントする
           <% end %>
-        </div>
       <% end %>
     <% else %>
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
     <% end %>
 
       <div class="comments">
+        <h4 class="comments-index">コメント一覧</h4>
         <% if @comments.exists? %>
-          <h4>コメント一覧</h4>
           <% @comments.each do |comment| %>
             <p class="comment-list">
-              <%= link_to comment.user.nickname, "users/#{comment.user_id}" %>
+              <%= link_to comment.user.nickname, "http://localhost:3000/users/#{comment.user_id}" %>
               <%= l comment.created_at, class: "comment-time" %><br>
               <%= comment.content %>
             </p>

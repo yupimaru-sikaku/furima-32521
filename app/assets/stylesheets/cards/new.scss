@@ -1,0 +1,63 @@
+.card-form{
+  width: 100%;
+  background-color: #f5f5f5;
+
+  .form-wrap {
+    width: 50%;
+    background-color: white;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 0;
+
+    .Cardpage{
+      font-size: 1.5em;
+      line-height: 100px;
+      border-bottom: 1px solid #f5f5f5;
+
+      h1{
+        font-weight: bold;
+      }
+    }
+
+    .form-group{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding-top: 20px;
+      
+      label{
+        margin-bottom: 1.5vh;
+      }
+      
+      input{
+        height: 6vh;
+        outline: none;
+        padding-left: 5px;
+        border: 1px solid black;
+      }
+
+      .input-expiration-date-wrap {
+        width: 10vw;
+        display: flex;
+        line-height: 55px;
+        margin: 2vh auto;
+        text-align: center;
+        justify-content: space-around;
+      }
+    }
+
+    .button{
+      display: block;
+      margin: 3vh auto;
+      width: 40%;
+      cursor: pointer;
+      border-radius: 0px;
+      background-color: red;
+      color: white;
+      border: none;
+      margin-bottom: 5vh;
+    }
+  }
+}
+  

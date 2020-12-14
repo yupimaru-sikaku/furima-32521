@@ -78,3 +78,7 @@ gem 'ransack'
 
 # 画像をドラッグしてアップロードできる
 gem 'dropzonejs-rails', '~> 0.7.3'
+gem 'gretel'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"

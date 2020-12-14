@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
-
   end
   
   def new
@@ -14,10 +13,11 @@ class ItemsController < ApplicationController
   end
   
   def show
+    @items = Item.includes(:user).order('created_at DESC')
     @comment = Comment.new
-    @comments = @item.comments.includes(:user)
+    @comments = @item.comments.includes(:user).order(created_at: "DESC")
   end
-
+  
   def create
     @item = Item.new(item_params)
     if @item.valid?
@@ -27,8 +27,9 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
+  
   def edit
+    @items = Item.includes(:user).order('created_at DESC')
     if @item.user.id == current_user.id && @orders.where(item_id: @item.id).blank?
       edit_item_path(@item)
     else
@@ -53,8 +54,10 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.search(params[:keyword])
+    @results = @p.result.includes(:user)
   end
 
+  
   private
 
   def item_params
@@ -72,4 +75,5 @@ class ItemsController < ApplicationController
   def search_item
     @p = Item.ransack(params[:q])
   end
+
 end
