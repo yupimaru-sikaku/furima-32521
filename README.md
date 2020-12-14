@@ -76,6 +76,15 @@
 | content       | string     | null: false                    |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
+=======
+## messages テーブル
+
+| Column        | Type       | Option                         |
+| ------------- | ---------- | ------------------------------ |
+| message       | string     | null: false                    |
+| user          | references | null: false                    |
+| item          | references | null: false                    |
+
 
 ### Association
 
@@ -93,7 +102,3 @@
 
 - has_many :users
 - has_many :items
-
-
-
-
